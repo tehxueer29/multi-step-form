@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -26,8 +27,8 @@ export default {
       },
     },
     backgroundImage: {
-      "sidebar-desktop": "url('./src/assets/images/bg-sidebar-desktop.svg')",
-      "sidebar-mobile": "url('./src/assets/images/bg-sidebar-mobile.svg')",
+      "sidebar-desktop": "url('/images/bg-sidebar-desktop.svg')",
+      "sidebar-mobile": "url('/images/bg-sidebar-mobile.svg')",
     },
   },
   plugins: [],
