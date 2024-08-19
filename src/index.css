@@ -26,10 +26,10 @@
   }
 
   h1 {
-    @apply text-3xl font-bold text-primary-900 pb-1;
+    @apply text-2xl font-bold text-primary-900 pb-1 md:text-3xl;
   }
 
   .subtitle {
-    @apply text-grey-600 pb-6;
+    @apply text-grey-600 pb-8 ;
   }
 }
