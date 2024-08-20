@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 // components
 import PlanCard from "../components/select_plan/PlanCard";
@@ -30,7 +30,7 @@ export default function SelectPlan() {
             key={index}
             selection={plan}
             selections={plans}
-            setSelection={setPlans}
+            setSelections={setPlans as Dispatch<SetStateAction<Array<object>>>}
           >
             <PlanCard plan={plan} isMonthly={isMonthly} />
           </Card>

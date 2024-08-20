@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 type CardProps = {
   children: ReactNode;
-  selection: any; //TODO: Fix this type
-  selections: any[]; //TODO: Fix this type
-  setSelection: () => void; //TODO: Fix this type
+  selection: { selected: boolean };
+  selections: Array<{ selected: boolean }>;
+  setSelections: Dispatch<SetStateAction<Array<object>>>;
   isSingleSelection?: boolean;
 };
 
@@ -12,7 +12,7 @@ export default function Card({
   children,
   selection,
   selections,
-  setSelection,
+  setSelections,
   isSingleSelection = true,
 }: CardProps) {
   const handleClick = () => {
@@ -24,11 +24,11 @@ export default function Card({
       } else if (isSingleSelection) {
         selectedItem.selected = false;
       }
-      
+
       return selectedItem;
     });
 
-    setSelection(newSelection);
+    setSelections(newSelection);
   };
 
   return (
