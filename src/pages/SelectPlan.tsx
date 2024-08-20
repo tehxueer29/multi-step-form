@@ -1,3 +1,4 @@
+// react
 import { Dispatch, SetStateAction, useState } from "react";
 
 // components
@@ -10,9 +11,16 @@ import AdvancedImg from "/images/icon-advanced.svg";
 import ProImg from "/images/icon-pro.svg";
 import TogglePlan from "../components/select_plan/TogglePlan";
 
+export type Plan = {
+  img: string;
+  title: string;
+  price: number;
+  selected: boolean;
+};
+
 export default function SelectPlan() {
-  const [isMonthly, setIsMonthly] = useState(true);
-  const [plans, setPlans] = useState([
+  const [isMonthly, setIsMonthly] = useState<boolean>(true);
+  const [plans, setPlans] = useState<Array<Plan>>([
     { img: ArcadeImg, title: "Arcade", price: 9, selected: true },
     { img: AdvancedImg, title: "Advanced", price: 12, selected: false },
     { img: ProImg, title: "Pro", price: 15, selected: false },

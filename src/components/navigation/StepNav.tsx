@@ -8,12 +8,12 @@ type StepNavProps = {
 
 export default function StepNav({ path, title }: StepNavProps) {
   const location = useLocation();
-  const [isActiveUrl, setIsActiveUrl] = useState(true);
+  const [isActiveUrl, setIsActiveUrl] = useState<boolean>(true);
 
-  const isLastStep = location.pathname == "/complete" && path == "/step-4";
+  const isLastStep: boolean = location.pathname == "/complete" && path == "/step-4";
 
   useEffect(() => {
-    const url = location.pathname;
+    const url: string = location.pathname;
     setIsActiveUrl(url == path || url == "/complete");
   }, [location, path]);
 

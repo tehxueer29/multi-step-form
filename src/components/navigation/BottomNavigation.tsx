@@ -4,24 +4,24 @@ import GoBackButton from "./GoBackButton";
 import NextStepButton from "./NextStepButton";
 
 export default function BottomNavigation() {
-  const urlHeader = "/step-";
+  const urlHeader: string = "/step-";
   const location = useLocation();
 
-  const [nextUrl, setNextUrl] = useState(`${urlHeader}1`);
-  const [backUrl, setBackUrl] = useState(`${urlHeader}1`);
-  const [name, setName] = useState("Next Step");
-  const [color, setColor] = useState("bg-primary-900");
+  const [nextUrl, setNextUrl] = useState<string>(`${urlHeader}1`);
+  const [backUrl, setBackUrl] = useState<string>(`${urlHeader}1`);
+  const [name, setName] = useState<string>("Next Step");
+  const [color, setColor] = useState<string>("bg-primary-900");
 
-  const isFirstStep = backUrl !== "/step-0";
-  const showNav = location.pathname !== "/complete";
+  const isFirstStep: boolean = backUrl !== "/step-0";
+  const showNav: boolean = location.pathname !== "/complete";
 
   useEffect(() => {
-    let forwardUrl;
-    let btnName;
-    let btnColor;
+    let forwardUrl: string;
+    let btnName: string;
+    let btnColor: string;
 
-    const currentStep = parseInt(location.pathname.split("-")[1]);
-    const backUrl = `${urlHeader}${currentStep - 1}`;
+    const currentStep: number = parseInt(location.pathname.split("-")[1]);
+    const backUrl: string = `${urlHeader}${currentStep - 1}`;
 
     if (currentStep == 4) {
       forwardUrl = "complete";

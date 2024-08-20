@@ -1,9 +1,7 @@
+import { Plan } from "../../pages/SelectPlan";
+
 type PlanCardProps = {
-  plan: {
-    img: string;
-    title: string;
-    price: number;
-  };
+  plan: Plan;
   isMonthly: boolean;
 };
 
