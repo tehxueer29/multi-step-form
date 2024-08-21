@@ -15,7 +15,7 @@ export default {
         secondary: {
           400: "#918DFC",
           500: "#493CFF",
-          600: "#504C98",
+          600: "#4640BA",
         },
         grey: {
           500: "#DBDADF",

@@ -34,7 +34,7 @@ export default function Card({
   return (
     <div
       onClick={() => handleClick()}
-      className={`border ${selection.selected ? "border-secondary-600 bg-primary-50" : "border-grey-500"} cursor-pointer rounded-md px-3.5 py-5 transition-colors hover:border-secondary-600`}
+      className={`border ${selection.selected ? "border-secondary-600 bg-primary-50" : "border-grey-500"} cursor-pointer rounded-md px-3.5 py-3.5 md:py-5 transition-colors hover:border-secondary-600`}
     >
       {children}
     </div>

@@ -21,7 +21,7 @@ export default function StepNav({ path, title }: StepNavProps) {
     <NavLink
       onClick={(e) => (isActiveUrl ? e.preventDefault() : "")}
       to={path}
-      className={`no-underline ${isActiveUrl ? "cursor-default" : ""}`}
+      className={({ isActive }) => `no-underline ${isActive ? "cursor-default" : ""}`}
     >
       {({ isActive }) => (
         <div className="flex items-center gap-x-4 text-sm uppercase text-white">

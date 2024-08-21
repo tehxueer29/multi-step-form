@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Card from "../components/UI/Card";
 import AddOnCard from "../components/add_ons/AddOnCard";
 
@@ -34,9 +34,18 @@ export default function AddOns() {
     <div>
       <h1>Pick add-ons</h1>
       <p className="subtitle">Add-ons help enhance your gaming experience.</p>
-      <div>
+      <div className="space-y-4">
         {addOns.map((addOn) => (
-          <AddOnCard key={addOn.title} addOn={addOn} isMonthly={false} /> //TODO: add ismonthly to state and use the real one
+          <Card
+            key={addOn.title}
+            selection={addOn}
+            selections={addOns}
+            setSelections={setAddOns as Dispatch<SetStateAction<Array<object>>>}
+            isSingleSelection={false}
+          >
+            {/* //TODO: add ismonthly to state and use the real one */}
+            <AddOnCard key={addOn.title} addOn={addOn} isMonthly={true} />
+          </Card>
         ))}
         {/* <Card></Card> */}
       </div>
