@@ -49,7 +49,7 @@ export const isValidatedForm = () => {
 
   for (const key in userInputs) {
     const input = userInputs[key as keyof UserStore] as Input;
-    if (input.error) {
+    if (input.error !== "") {
       return false;
     }
   }
