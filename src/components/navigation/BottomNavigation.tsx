@@ -30,7 +30,6 @@ export default function BottomNavigation() {
     const backUrl: string = `${urlHeader}${currentStep - 1}`;
 
     if (currentStep == 4) {
-      console.log(isValidatedForm())
       forwardUrl = isValidatedForm() ? "complete" : "step-1";
       btnName = "Confirm";
       btnColor = {
