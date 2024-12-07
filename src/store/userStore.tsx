@@ -2,14 +2,18 @@ import { create } from "zustand";
 import { StoreApi } from "zustand/vanilla";
 
 // types
-type UserStore = {
+type State  = {
   name: Input;
   email: Input;
   phone: Input;
+};
+
+type Action  = {
   setName: (value: string) => void;
   setEmail: (value: string) => void;
   setPhone: (value: string) => void;
-};
+  isValidatedForm: () => boolean;
+}
 
 export type Input = {
   val: string;
@@ -26,7 +30,7 @@ const initialState: Input = {
 const updateState = (
   input: string,
   value: string,
-  set: StoreApi<UserStore>["setState"],
+  set: StoreApi<Action>["setState"],
 ) => {
   let error = "";
 
@@ -44,24 +48,32 @@ const updateState = (
   set({ [input]: { val: value, error: error } });
 };
 
-export const isValidatedForm = () => {
+const checkForm = (set: StoreApi<Action>["setState"]) => {
   const userInputs = useUserStore.getState();
+  let isValid = true;
 
   for (const key in userInputs) {
-    const input = userInputs[key as keyof UserStore] as Input;
-    if (input.error !== "" && input.val === "") {
-      return false;
+    if (typeof userInputs[key as keyof State] !== 'object') {
+      break;
+    }
+    const input = userInputs[key as keyof State] as Input;
+    updateState(key, input.val, set)
+    
+    const updatedInput = useUserStore.getState()[key as keyof State] as Input;
+    if (updatedInput.error !== "") {
+      isValid = false;
     }
   }
-  return true;
+  return isValid;
 }
 
 // store
-export const useUserStore = create<UserStore>((set) => ({
+export const useUserStore = create<State & Action>((set) => ({
   name: initialState,
   email: initialState,
   phone: initialState,
   setName: (value: string) => updateState("name", value, set),
   setEmail: (value: string) => updateState("email", value, set),
   setPhone: (value: string) => updateState("phone", value, set),
+  isValidatedForm: () => checkForm(set),
 }));

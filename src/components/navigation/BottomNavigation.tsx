@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { isValidatedForm } from "../../store/userStore";
+import { useUserStore } from "../../store/userStore";
 import GoBackButton from "./GoBackButton";
 import NextStepButton from "./NextStepButton";
 
 type ButtonColor = { color: string; hoverColor: string };
 
 export default function BottomNavigation() {
+  const { isValidatedForm } = useUserStore();
   const urlHeader: string = "/step-";
   const location = useLocation();
 
