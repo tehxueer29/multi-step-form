@@ -10,7 +10,9 @@ export default function StepNav({ path, title }: StepNavProps) {
   const location = useLocation();
   const [isActiveUrl, setIsActiveUrl] = useState<boolean>(true);
 
-  const isLastStep: boolean = location.pathname == "/complete" && path == "/step-4";
+  const isLastStep: boolean =
+    location.pathname == "/complete" && path == "/step-4";
+  const atLastStep: boolean = location.pathname == "/complete";
 
   useEffect(() => {
     const url: string = location.pathname;
@@ -21,7 +23,9 @@ export default function StepNav({ path, title }: StepNavProps) {
     <NavLink
       onClick={(e) => (isActiveUrl ? e.preventDefault() : "")}
       to={path}
-      className={({ isActive }) => `no-underline ${isActive ? "cursor-default" : ""}`}
+      className={({ isActive }) =>
+        `no-underline ${isActive || atLastStep ? "cursor-default" : ""}`
+      }
     >
       {({ isActive }) => (
         <div className="flex items-center gap-x-4 text-sm uppercase text-white">

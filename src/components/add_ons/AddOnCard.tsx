@@ -1,23 +1,26 @@
-import { AddOn } from "../../pages/AddOns";
+import { AddOn } from "../../store/addOnStore";
+import { usePlanStore } from "../../store/planStore";
 import Checkbox from "../UI/Checkbox";
 
 type AddOnCardProps = {
   addOn: AddOn;
-  isMonthly: boolean;
 };
 
-export default function AddOnCard({ addOn, isMonthly }: AddOnCardProps) {
+export default function AddOnCard({ addOn }: AddOnCardProps) {
+  const { isMonthly } = usePlanStore();
+
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex space-x-3 md:space-x-6 md:ps-3 items-center">
-        <Checkbox selected={addOn.selected}/>
+    <div className="flex items-center justify-between">
+      <div className="flex items-center space-x-3 md:space-x-6 md:ps-3">
+        <Checkbox selected={addOn.selected} />
         <div>
           <p className="font-bold text-primary-900">{addOn.title}</p>
           <p className="subtitle pb-0 text-sm">{addOn.subtitle}</p>
         </div>
       </div>
       <p className="text-secondary-600">
-        +${isMonthly ? `${addOn.price}/mo` : `${addOn.price * 10}/yr`}
+        +${addOn.price}
+        {isMonthly ? `/mo` : `/yr`}
       </p>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Plan } from "../../pages/SelectPlan";
+import { Plan } from "../../store/planStore";
 
 type PlanCardProps = {
   plan: Plan;
@@ -11,7 +11,7 @@ export default function PlanCard({ plan, isMonthly }: PlanCardProps) {
       <img src={plan.img} alt="" className="pe-3.5 md:pb-10" />
       <div>
         <p className="font-bold text-primary-900">{plan.title}</p>
-        <p className="subtitle pb-0 text-sm">${plan.price}/mo</p>
+        <p className="subtitle pb-0 text-sm">${plan.price}{isMonthly ? `/mo` : `/yr`}</p>
         {!isMonthly && (
           <p className="text-sm font-medium text-primary-900">2 months free</p>
         )}
