@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useUserStore } from "../../store/userStore";
+import { isValidatedForm } from "../../store/userStore";
 import GoBackButton from "./GoBackButton";
 import NextStepButton from "./NextStepButton";
 
 type ButtonColor = { color: string; hoverColor: string };
 
 export default function BottomNavigation() {
-  const { isValidatedForm } = useUserStore();
-
   const urlHeader: string = "/step-";
   const location = useLocation();
 
@@ -32,7 +30,8 @@ export default function BottomNavigation() {
     const backUrl: string = `${urlHeader}${currentStep - 1}`;
 
     if (currentStep == 4) {
-      forwardUrl = isValidatedForm ? "complete" : "step-1";
+      console.log(isValidatedForm())
+      forwardUrl = isValidatedForm() ? "complete" : "step-1";
       btnName = "Confirm";
       btnColor = {
         color: "bg-secondary-500",

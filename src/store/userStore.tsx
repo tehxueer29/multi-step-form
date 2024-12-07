@@ -6,11 +6,9 @@ type UserStore = {
   name: Input;
   email: Input;
   phone: Input;
-  isValidatedForm: boolean,
   setName: (value: string) => void;
   setEmail: (value: string) => void;
   setPhone: (value: string) => void;
-  setIsValidatedForm: (value: boolean) => void;
 };
 
 export type Input = {
@@ -43,17 +41,27 @@ const updateState = (
     error = !phoneRegex.test(value) ? "Invalid phone number" : "";
   }
 
-  set({ [input]: { val: value, error: error }, isValidatedForm: !error });
+  set({ [input]: { val: value, error: error } });
 };
+
+export const isValidatedForm = () => {
+  const userInputs = useUserStore.getState();
+
+  for (const key in userInputs) {
+    const input = userInputs[key as keyof UserStore] as Input;
+    if (input.error) {
+      return false;
+    }
+  }
+  return true;
+}
 
 // store
 export const useUserStore = create<UserStore>((set) => ({
   name: initialState,
   email: initialState,
   phone: initialState,
-  isValidatedForm: false,
   setName: (value: string) => updateState("name", value, set),
   setEmail: (value: string) => updateState("email", value, set),
   setPhone: (value: string) => updateState("phone", value, set),
-  setIsValidatedForm: (isValidatedForm) => set({ isValidatedForm }),
 }));
